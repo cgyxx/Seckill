@@ -15,5 +15,5 @@ package com.suixingpay.service;
  * @date: 2019/12/08 14:34
  * @version: V1.0
  */
-public interface salesmanService{
+public interface SalesmanService {
 }

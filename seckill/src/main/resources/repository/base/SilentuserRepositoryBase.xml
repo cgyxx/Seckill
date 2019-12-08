@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.suixingpay.repository.silentuserRepository" >
+<mapper namespace="com.suixingpay.repository.SilentuserRepository" >
 
-    <resultMap id="BaseResultMap" type="com.suixingpay.entity.silentuser" >
+    <resultMap id="BaseResultMap" type="com.suixingpay.entity.Silentuser" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="number" property="number" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
@@ -27,13 +27,13 @@
     </delete>
 
 
-    <insert id="insert" parameterType="com.suixingpay.entity.silentuser" >
+    <insert id="insert" parameterType="com.suixingpay.entity.Silentuser" >
         insert into `silentuser` (`id`,`number`,`name`,`sex`,`phone`,`city`,`surplus`,`status`,`slaesid`,`info`)
         values (#{id,jdbcType=INTEGER},#{number,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{surplus,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{slaesid,jdbcType=INTEGER},#{info,jdbcType=VARCHAR})
     </insert>
 
 
-    <insert id="insertSelective" parameterType="com.suixingpay.entity.silentuser" >
+    <insert id="insertSelective" parameterType="com.suixingpay.entity.Silentuser" >
         insert into `silentuser`
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null or id == 0" >
@@ -102,7 +102,7 @@
     </insert>
 
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.silentuser" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.Silentuser" >
         update `silentuser`
         <set >
             <if test="number != null" >
@@ -137,7 +137,7 @@
     </update>
 
 
-    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.silentuser" >
+    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.Silentuser" >
         update `silentuser` set
         `number` = #{number,jdbcType=VARCHAR},
         `name` = #{name,jdbcType=VARCHAR},
@@ -381,7 +381,7 @@
     </sql>
 
 
-    <select id="findOne" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+    <select id="findOne" parameterType="com.suixingpay.entity.Silentuser" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `silentuser`
@@ -390,7 +390,7 @@
     </select>
 
 
-    <select id="findAllWithResult" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+    <select id="findAllWithResult" parameterType="com.suixingpay.entity.Silentuser" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `silentuser`
@@ -399,7 +399,7 @@
     </select>
 
 
-    <select id="findPageWithResult" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+    <select id="findPageWithResult" parameterType="com.suixingpay.entity.Silentuser" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `silentuser`
@@ -409,13 +409,13 @@
     </select>
 
 
-    <select id="findPageWithCount" parameterType="com.suixingpay.entity.silentuser" resultType="java.lang.Integer" >
+    <select id="findPageWithCount" parameterType="com.suixingpay.entity.Silentuser" resultType="java.lang.Integer" >
         select count(1)
         from `silentuser`
         <include refid="findPageWithWhere" />
     </select>
 
-    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.Silentuser" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `silentuser`
@@ -425,7 +425,7 @@
     </select>
 
 
-    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.silentuser" resultType="java.lang.Integer" >
+    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.Silentuser" resultType="java.lang.Integer" >
         select count(1)
         from `silentuser`
         <include refid="findPageWithWhereLike" />

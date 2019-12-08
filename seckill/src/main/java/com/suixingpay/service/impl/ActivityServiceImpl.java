@@ -10,8 +10,8 @@ package com.suixingpay.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.suixingpay.repository.activityRepository;
-import com.suixingpay.service.activityService;
+import com.suixingpay.repository.ActivityRepository;
+import com.suixingpay.service.ActivityService;
 
 /**
  * @description:
@@ -20,9 +20,9 @@ import com.suixingpay.service.activityService;
  * @version: V1.0
  */
 @Service
-public class activityServiceImpl implements activityService {
+public class ActivityServiceImpl implements ActivityService {
 
     @Autowired
-    private activityRepository activityRepository;
+    private ActivityRepository activityRepository;
 
 }

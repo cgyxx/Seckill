@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.suixingpay.repository.activityRepository" >
+<mapper namespace="com.suixingpay.repository.ActivityRepository" >
 
-    <resultMap id="BaseResultMap" type="com.suixingpay.entity.activity" >
+    <resultMap id="BaseResultMap" type="com.suixingpay.entity.Activity" >
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="startime" property="startime" jdbcType="VARCHAR" />
@@ -24,13 +24,13 @@
     </delete>
 
 
-    <insert id="insert" parameterType="com.suixingpay.entity.activity" >
+    <insert id="insert" parameterType="com.suixingpay.entity.Activity" >
         insert into `activity` (`id`,`name`,`startime`,`endtime`,`activitycount`,`city`,`info`)
         values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{startime,jdbcType=VARCHAR},#{endtime,jdbcType=VARCHAR},#{activitycount,jdbcType=INTEGER},#{city,jdbcType=VARCHAR},#{info,jdbcType=VARCHAR})
     </insert>
 
 
-    <insert id="insertSelective" parameterType="com.suixingpay.entity.activity" >
+    <insert id="insertSelective" parameterType="com.suixingpay.entity.Activity" >
         insert into `activity`
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null or id == 0" >
@@ -81,7 +81,7 @@
     </insert>
 
 
-    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.activity" >
+    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.Activity" >
         update `activity`
         <set >
             <if test="name != null" >
@@ -107,7 +107,7 @@
     </update>
 
 
-    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.activity" >
+    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.Activity" >
         update `activity` set
         `name` = #{name,jdbcType=VARCHAR},
         `startime` = #{startime,jdbcType=VARCHAR},
@@ -294,7 +294,7 @@
     </sql>
 
 
-    <select id="findOne" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+    <select id="findOne" parameterType="com.suixingpay.entity.Activity" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `activity`
@@ -303,7 +303,7 @@
     </select>
 
 
-    <select id="findAllWithResult" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+    <select id="findAllWithResult" parameterType="com.suixingpay.entity.Activity" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `activity`
@@ -312,7 +312,7 @@
     </select>
 
 
-    <select id="findPageWithResult" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+    <select id="findPageWithResult" parameterType="com.suixingpay.entity.Activity" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `activity`
@@ -322,13 +322,13 @@
     </select>
 
 
-    <select id="findPageWithCount" parameterType="com.suixingpay.entity.activity" resultType="java.lang.Integer" >
+    <select id="findPageWithCount" parameterType="com.suixingpay.entity.Activity" resultType="java.lang.Integer" >
         select count(1)
         from `activity`
         <include refid="findPageWithWhere" />
     </select>
 
-    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.Activity" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `activity`
@@ -338,7 +338,7 @@
     </select>
 
 
-    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.activity" resultType="java.lang.Integer" >
+    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.Activity" resultType="java.lang.Integer" >
         select count(1)
         from `activity`
         <include refid="findPageWithWhereLike" />

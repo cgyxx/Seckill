@@ -10,8 +10,8 @@ package com.suixingpay.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.suixingpay.repository.silentuserRepository;
-import com.suixingpay.service.silentuserService;
+import com.suixingpay.repository.SalesmanRepository;
+import com.suixingpay.service.SalesmanService;
 
 /**
  * @description:
@@ -20,9 +20,9 @@ import com.suixingpay.service.silentuserService;
  * @version: V1.0
  */
 @Service
-public class silentuserServiceImpl implements silentuserService {
+public class SalesmanServiceImpl implements SalesmanService {
 
     @Autowired
-    private silentuserRepository silentuserRepository;
+    private SalesmanRepository salesmanRepository;
 
 }

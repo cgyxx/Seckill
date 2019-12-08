@@ -19,5 +19,5 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface silentuserRepository{
+public interface SalesmanRepository {
 }

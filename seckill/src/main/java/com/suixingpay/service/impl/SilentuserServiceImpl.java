@@ -6,12 +6,12 @@
  * @Copyright: 2019 Suixingpay. All rights reserved.
  * 注意：本内容仅限于随行付支付有限公司内部传阅，禁止外泄以及用于其他的商业用途。
  */
-package com.suixingpay.controller;
+package com.suixingpay.service.impl;
 
-import com.suixingpay.service.silentuserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
+import com.suixingpay.repository.SilentuserRepository;
+import com.suixingpay.service.SilentuserService;
 
 /**
  * @description:
@@ -19,11 +19,10 @@ import org.springframework.web.bind.annotation.RestController;
  * @date: 2019/12/08 14:34
  * @version: V1.0
  */
-@RestController
-@RequestMapping("/silentusers")
-public class silentuserController{
+@Service
+public class SilentuserServiceImpl implements SilentuserService {
 
     @Autowired
-    private silentuserService silentuserService;
+    private SilentuserRepository silentuserRepository;
 
 }

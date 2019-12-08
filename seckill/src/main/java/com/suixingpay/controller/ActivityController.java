@@ -8,7 +8,7 @@
  */
 package com.suixingpay.controller;
 
-import com.suixingpay.service.activityService;
+import com.suixingpay.service.ActivityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,9 +21,9 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 @RequestMapping("/activitys")
-public class activityController {
+public class ActivityController {
 
     @Autowired
-    private activityService activityService;
+    private ActivityService activityService;
 
 }

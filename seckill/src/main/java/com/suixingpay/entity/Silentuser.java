@@ -28,7 +28,7 @@ import java.lang.String;
 @NoArgsConstructor
 @AllArgsConstructor
 @Accessors(chain = true)
-public class silentuser{
+public class Silentuser {
     /**  **/
     private Integer id;
     /** 商户编号 **/

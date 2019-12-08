@@ -1,4 +1,4 @@
-package com.suixingpay.RabbitMQ;
+package com.suixingpay.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;

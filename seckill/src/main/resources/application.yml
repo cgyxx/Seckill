@@ -11,7 +11,7 @@ spring:
     type: com.alibaba.druid.pool.DruidDataSource
     username: root
     password: ssg593707482
-    url: jdbc:mysql://152.136.101.102:3306/patentprocess?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://152.136.101.102:3306/seckill?useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.jdbc.Driver
     # 初始化，最小，最大连接数
     initialSize: 3

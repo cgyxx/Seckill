@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suixingpay.repository.activityRepository" >
+
+    <resultMap id="BaseResultMap" type="com.suixingpay.entity.activity" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="startime" property="startime" jdbcType="VARCHAR" />
+        <result column="endtime" property="endtime" jdbcType="VARCHAR" />
+        <result column="activitycount" property="activitycount" jdbcType="INTEGER" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+        `id`,`name`,`startime`,`endtime`,`activitycount`,`city`,`info`
+    </sql>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from `activity`
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+
+
+    <insert id="insert" parameterType="com.suixingpay.entity.activity" >
+        insert into `activity` (`id`,`name`,`startime`,`endtime`,`activitycount`,`city`,`info`)
+        values (#{id,jdbcType=INTEGER},#{name,jdbcType=VARCHAR},#{startime,jdbcType=VARCHAR},#{endtime,jdbcType=VARCHAR},#{activitycount,jdbcType=INTEGER},#{city,jdbcType=VARCHAR},#{info,jdbcType=VARCHAR})
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.suixingpay.entity.activity" >
+        insert into `activity`
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null or id == 0" >
+                `id`,
+            </if>
+            <if test="name != null" >
+                `name`,
+            </if>
+            <if test="startime != null" >
+                `startime`,
+            </if>
+            <if test="endtime != null" >
+                `endtime`,
+            </if>
+            <if test="activitycount != null or activitycount == 0" >
+                `activitycount`,
+            </if>
+            <if test="city != null" >
+                `city`,
+            </if>
+            <if test="info != null" >
+                `info`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null or id == 0" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="startime != null" >
+                #{startime,jdbcType=VARCHAR},
+            </if>
+            <if test="endtime != null" >
+                #{endtime,jdbcType=VARCHAR},
+            </if>
+            <if test="activitycount != null or activitycount == 0" >
+                #{activitycount,jdbcType=INTEGER},
+            </if>
+            <if test="city != null" >
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null" >
+                #{info,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.activity" >
+        update `activity`
+        <set >
+            <if test="name != null" >
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="startime != null" >
+                `startime` = #{startime,jdbcType=VARCHAR},
+            </if>
+            <if test="endtime != null" >
+                `endtime` = #{endtime,jdbcType=VARCHAR},
+            </if>
+            <if test="activitycount != null or activitycount == 0" >
+                `activitycount` = #{activitycount,jdbcType=INTEGER},
+            </if>
+            <if test="city != null" >
+                `city` = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="info != null" >
+                `info` = #{info,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.activity" >
+        update `activity` set
+        `name` = #{name,jdbcType=VARCHAR},
+        `startime` = #{startime,jdbcType=VARCHAR},
+        `endtime` = #{endtime,jdbcType=VARCHAR},
+        `activitycount` = #{activitycount,jdbcType=INTEGER},
+        `city` = #{city,jdbcType=VARCHAR},
+        `info` = #{info,jdbcType=VARCHAR}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <sql id="findPageWithWhere" >
+        <where> 1=1
+            <if test="id != null or id == 0" >
+                and `id` = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="name != null" >
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="startime != null" >
+                and `startime` = #{startime,jdbcType=VARCHAR}
+            </if>
+            <if test="endtime != null" >
+                and `endtime` = #{endtime,jdbcType=VARCHAR}
+            </if>
+            <if test="activitycount != null or activitycount == 0" >
+                and `activitycount` = #{activitycount,jdbcType=INTEGER}
+            </if>
+            <if test="city != null" >
+                and `city` = #{city,jdbcType=VARCHAR}
+            </if>
+            <if test="info != null" >
+                and `info` = #{info,jdbcType=VARCHAR}
+            </if>
+
+            <if test="null != likes">
+                <foreach collection="likes.keys" item="k" separator=" ">
+                    <if test='k == "id" and likes[k] != null'>
+                        and `id` like concat('%', #{likes.id,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "name" and likes[k] != null'>
+                        and `name` like concat('%', #{likes.name,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "startime" and likes[k] != null'>
+                        and `startime` like concat('%', #{likes.startime,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "endtime" and likes[k] != null'>
+                        and `endtime` like concat('%', #{likes.endtime,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "activitycount" and likes[k] != null'>
+                        and `activitycount` like concat('%', #{likes.activitycount,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "city" and likes[k] != null'>
+                        and `city` like concat('%', #{likes.city,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "info" and likes[k] != null'>
+                        and `info` like concat('%', #{likes.info,jdbcType=VARCHAR}, '%')
+                    </if>
+                </foreach>
+            </if>
+
+            <if test="null != dates">
+                <foreach collection="dates.keys" item="k" separator=" ">
+                </foreach>
+            </if>
+
+            <if test="null != includes">
+                <foreach collection="includes.keys" item="k" separator=" ">
+                    <if test='k == "id" and includes[k] != null'>
+                        and `id` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "name" and includes[k] != null'>
+                        and `name` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "startime" and includes[k] != null'>
+                        and `startime` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "endtime" and includes[k] != null'>
+                        and `endtime` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "activitycount" and includes[k] != null'>
+                        and `activitycount` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "city" and includes[k] != null'>
+                        and `city` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "info" and includes[k] != null'>
+                        and `info` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <sql id="findPageWithWhereLike" >
+        <where> 1=1
+            <if test="id != null or id == 0" >
+                and `id` like concat('%', #{id,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="name != null" >
+                and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="startime != null" >
+                and `startime` like concat('%', #{startime,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="endtime != null" >
+                and `endtime` like concat('%', #{endtime,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="activitycount != null or activitycount == 0" >
+                and `activitycount` like concat('%', #{activitycount,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="city != null" >
+                and `city` like concat('%', #{city,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="info != null" >
+                and `info` like concat('%', #{info,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </sql>
+
+
+    <sql id="findPageWithOrder">
+        <if test="null != orders" >
+            ORDER BY
+            <foreach collection="orders.keys" item="k" separator=",">
+                <if test='k == "id"'>
+                    `id`
+                </if>
+                <if test='k == "name"'>
+                    `name`
+                </if>
+                <if test='k == "startime"'>
+                    `startime`
+                </if>
+                <if test='k == "endtime"'>
+                    `endtime`
+                </if>
+                <if test='k == "activitycount"'>
+                    `activitycount`
+                </if>
+                <if test='k == "city"'>
+                    `city`
+                </if>
+                <if test='k == "info"'>
+                    `info`
+                </if>
+                <if test='orders[k] == "asc"'>
+                    ASC
+                </if>
+                <if test='orders[k] == "desc"'>
+                    DESC
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <select id="findOne" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        <include refid="findPageWithWhere" />
+        limit 1
+    </select>
+
+
+    <select id="findAllWithResult" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        <include refid="findPageWithWhere" />
+        <include refid="findPageWithOrder" />
+    </select>
+
+
+    <select id="findPageWithResult" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        <include refid="findPageWithWhere" />
+        <include refid="findPageWithOrder" />
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <select id="findPageWithCount" parameterType="com.suixingpay.entity.activity" resultType="java.lang.Integer" >
+        select count(1)
+        from `activity`
+        <include refid="findPageWithWhere" />
+    </select>
+
+    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.activity" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        <include refid="findPageWithWhereLike" />
+        <include refid="findPageWithOrder" />
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.activity" resultType="java.lang.Integer" >
+        select count(1)
+        from `activity`
+        <include refid="findPageWithWhereLike" />
+    </select>
+
+
+</mapper>

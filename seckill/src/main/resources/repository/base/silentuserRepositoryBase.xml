@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suixingpay.repository.silentuserRepository" >
+
+    <resultMap id="BaseResultMap" type="com.suixingpay.entity.silentuser" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="number" property="number" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="city" property="city" jdbcType="VARCHAR" />
+        <result column="surplus" property="surplus" jdbcType="INTEGER" />
+        <result column="status" property="status" jdbcType="INTEGER" />
+        <result column="slaesid" property="slaesid" jdbcType="INTEGER" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+        `id`,`number`,`name`,`sex`,`phone`,`city`,`surplus`,`status`,`slaesid`,`info`
+    </sql>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from `silentuser`
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+
+
+    <insert id="insert" parameterType="com.suixingpay.entity.silentuser" >
+        insert into `silentuser` (`id`,`number`,`name`,`sex`,`phone`,`city`,`surplus`,`status`,`slaesid`,`info`)
+        values (#{id,jdbcType=INTEGER},#{number,jdbcType=VARCHAR},#{name,jdbcType=VARCHAR},#{sex,jdbcType=VARCHAR},#{phone,jdbcType=VARCHAR},#{city,jdbcType=VARCHAR},#{surplus,jdbcType=INTEGER},#{status,jdbcType=INTEGER},#{slaesid,jdbcType=INTEGER},#{info,jdbcType=VARCHAR})
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.suixingpay.entity.silentuser" >
+        insert into `silentuser`
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null or id == 0" >
+                `id`,
+            </if>
+            <if test="number != null" >
+                `number`,
+            </if>
+            <if test="name != null" >
+                `name`,
+            </if>
+            <if test="sex != null" >
+                `sex`,
+            </if>
+            <if test="phone != null" >
+                `phone`,
+            </if>
+            <if test="city != null" >
+                `city`,
+            </if>
+            <if test="surplus != null or surplus == 0" >
+                `surplus`,
+            </if>
+            <if test="status != null or status == 0" >
+                `status`,
+            </if>
+            <if test="slaesid != null or slaesid == 0" >
+                `slaesid`,
+            </if>
+            <if test="info != null" >
+                `info`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null or id == 0" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="number != null" >
+                #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null" >
+                #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="surplus != null or surplus == 0" >
+                #{surplus,jdbcType=INTEGER},
+            </if>
+            <if test="status != null or status == 0" >
+                #{status,jdbcType=INTEGER},
+            </if>
+            <if test="slaesid != null or slaesid == 0" >
+                #{slaesid,jdbcType=INTEGER},
+            </if>
+            <if test="info != null" >
+                #{info,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.silentuser" >
+        update `silentuser`
+        <set >
+            <if test="number != null" >
+                `number` = #{number,jdbcType=VARCHAR},
+            </if>
+            <if test="name != null" >
+                `name` = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="sex != null" >
+                `sex` = #{sex,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null" >
+                `phone` = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="city != null" >
+                `city` = #{city,jdbcType=VARCHAR},
+            </if>
+            <if test="surplus != null or surplus == 0" >
+                `surplus` = #{surplus,jdbcType=INTEGER},
+            </if>
+            <if test="status != null or status == 0" >
+                `status` = #{status,jdbcType=INTEGER},
+            </if>
+            <if test="slaesid != null or slaesid == 0" >
+                `slaesid` = #{slaesid,jdbcType=INTEGER},
+            </if>
+            <if test="info != null" >
+                `info` = #{info,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.silentuser" >
+        update `silentuser` set
+        `number` = #{number,jdbcType=VARCHAR},
+        `name` = #{name,jdbcType=VARCHAR},
+        `sex` = #{sex,jdbcType=VARCHAR},
+        `phone` = #{phone,jdbcType=VARCHAR},
+        `city` = #{city,jdbcType=VARCHAR},
+        `surplus` = #{surplus,jdbcType=INTEGER},
+        `status` = #{status,jdbcType=INTEGER},
+        `slaesid` = #{slaesid,jdbcType=INTEGER},
+        `info` = #{info,jdbcType=VARCHAR}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `silentuser`
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <sql id="findPageWithWhere" >
+        <where> 1=1
+            <if test="id != null or id == 0" >
+                and `id` = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="number != null" >
+                and `number` = #{number,jdbcType=VARCHAR}
+            </if>
+            <if test="name != null" >
+                and `name` = #{name,jdbcType=VARCHAR}
+            </if>
+            <if test="sex != null" >
+                and `sex` = #{sex,jdbcType=VARCHAR}
+            </if>
+            <if test="phone != null" >
+                and `phone` = #{phone,jdbcType=VARCHAR}
+            </if>
+            <if test="city != null" >
+                and `city` = #{city,jdbcType=VARCHAR}
+            </if>
+            <if test="surplus != null or surplus == 0" >
+                and `surplus` = #{surplus,jdbcType=INTEGER}
+            </if>
+            <if test="status != null or status == 0" >
+                and `status` = #{status,jdbcType=INTEGER}
+            </if>
+            <if test="slaesid != null or slaesid == 0" >
+                and `slaesid` = #{slaesid,jdbcType=INTEGER}
+            </if>
+            <if test="info != null" >
+                and `info` = #{info,jdbcType=VARCHAR}
+            </if>
+
+            <if test="null != likes">
+                <foreach collection="likes.keys" item="k" separator=" ">
+                    <if test='k == "id" and likes[k] != null'>
+                        and `id` like concat('%', #{likes.id,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "number" and likes[k] != null'>
+                        and `number` like concat('%', #{likes.number,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "name" and likes[k] != null'>
+                        and `name` like concat('%', #{likes.name,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "sex" and likes[k] != null'>
+                        and `sex` like concat('%', #{likes.sex,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "phone" and likes[k] != null'>
+                        and `phone` like concat('%', #{likes.phone,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "city" and likes[k] != null'>
+                        and `city` like concat('%', #{likes.city,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "surplus" and likes[k] != null'>
+                        and `surplus` like concat('%', #{likes.surplus,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "status" and likes[k] != null'>
+                        and `status` like concat('%', #{likes.status,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "slaesid" and likes[k] != null'>
+                        and `slaesid` like concat('%', #{likes.slaesid,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "info" and likes[k] != null'>
+                        and `info` like concat('%', #{likes.info,jdbcType=VARCHAR}, '%')
+                    </if>
+                </foreach>
+            </if>
+
+            <if test="null != dates">
+                <foreach collection="dates.keys" item="k" separator=" ">
+                </foreach>
+            </if>
+
+            <if test="null != includes">
+                <foreach collection="includes.keys" item="k" separator=" ">
+                    <if test='k == "id" and includes[k] != null'>
+                        and `id` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "number" and includes[k] != null'>
+                        and `number` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "name" and includes[k] != null'>
+                        and `name` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "sex" and includes[k] != null'>
+                        and `sex` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "phone" and includes[k] != null'>
+                        and `phone` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "city" and includes[k] != null'>
+                        and `city` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "surplus" and includes[k] != null'>
+                        and `surplus` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "status" and includes[k] != null'>
+                        and `status` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "slaesid" and includes[k] != null'>
+                        and `slaesid` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "info" and includes[k] != null'>
+                        and `info` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <sql id="findPageWithWhereLike" >
+        <where> 1=1
+            <if test="id != null or id == 0" >
+                and `id` like concat('%', #{id,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="number != null" >
+                and `number` like concat('%', #{number,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="name != null" >
+                and `name` like concat('%', #{name,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="sex != null" >
+                and `sex` like concat('%', #{sex,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="phone != null" >
+                and `phone` like concat('%', #{phone,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="city != null" >
+                and `city` like concat('%', #{city,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="surplus != null or surplus == 0" >
+                and `surplus` like concat('%', #{surplus,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="status != null or status == 0" >
+                and `status` like concat('%', #{status,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="slaesid != null or slaesid == 0" >
+                and `slaesid` like concat('%', #{slaesid,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="info != null" >
+                and `info` like concat('%', #{info,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </sql>
+
+
+    <sql id="findPageWithOrder">
+        <if test="null != orders" >
+            ORDER BY
+            <foreach collection="orders.keys" item="k" separator=",">
+                <if test='k == "id"'>
+                    `id`
+                </if>
+                <if test='k == "number"'>
+                    `number`
+                </if>
+                <if test='k == "name"'>
+                    `name`
+                </if>
+                <if test='k == "sex"'>
+                    `sex`
+                </if>
+                <if test='k == "phone"'>
+                    `phone`
+                </if>
+                <if test='k == "city"'>
+                    `city`
+                </if>
+                <if test='k == "surplus"'>
+                    `surplus`
+                </if>
+                <if test='k == "status"'>
+                    `status`
+                </if>
+                <if test='k == "slaesid"'>
+                    `slaesid`
+                </if>
+                <if test='k == "info"'>
+                    `info`
+                </if>
+                <if test='orders[k] == "asc"'>
+                    ASC
+                </if>
+                <if test='orders[k] == "desc"'>
+                    DESC
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <select id="findOne" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `silentuser`
+        <include refid="findPageWithWhere" />
+        limit 1
+    </select>
+
+
+    <select id="findAllWithResult" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `silentuser`
+        <include refid="findPageWithWhere" />
+        <include refid="findPageWithOrder" />
+    </select>
+
+
+    <select id="findPageWithResult" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `silentuser`
+        <include refid="findPageWithWhere" />
+        <include refid="findPageWithOrder" />
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <select id="findPageWithCount" parameterType="com.suixingpay.entity.silentuser" resultType="java.lang.Integer" >
+        select count(1)
+        from `silentuser`
+        <include refid="findPageWithWhere" />
+    </select>
+
+    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.silentuser" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `silentuser`
+        <include refid="findPageWithWhereLike" />
+        <include refid="findPageWithOrder" />
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.silentuser" resultType="java.lang.Integer" >
+        select count(1)
+        from `silentuser`
+        <include refid="findPageWithWhereLike" />
+    </select>
+
+
+</mapper>

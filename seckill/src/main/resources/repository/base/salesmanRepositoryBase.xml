@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.suixingpay.repository.salesmanRepository" >
+
+    <resultMap id="BaseResultMap" type="com.suixingpay.entity.salesman" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="identify" property="identify" jdbcType="INTEGER" />
+        <result column="info" property="info" jdbcType="VARCHAR" />
+    </resultMap>
+
+
+    <sql id="Base_Column_List" >
+        `id`,`nickname`,`username`,`password`,`identify`,`info`
+    </sql>
+
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+        delete from `salesman`
+        where `id` = #{id,jdbcType=INTEGER}
+    </delete>
+
+
+    <insert id="insert" parameterType="com.suixingpay.entity.salesman" >
+        insert into `salesman` (`id`,`nickname`,`username`,`password`,`identify`,`info`)
+        values (#{id,jdbcType=INTEGER},#{nickname,jdbcType=VARCHAR},#{username,jdbcType=VARCHAR},#{password,jdbcType=VARCHAR},#{identify,jdbcType=INTEGER},#{info,jdbcType=VARCHAR})
+    </insert>
+
+
+    <insert id="insertSelective" parameterType="com.suixingpay.entity.salesman" >
+        insert into `salesman`
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="id != null or id == 0" >
+                `id`,
+            </if>
+            <if test="nickname != null" >
+                `nickname`,
+            </if>
+            <if test="username != null" >
+                `username`,
+            </if>
+            <if test="password != null" >
+                `password`,
+            </if>
+            <if test="identify != null or identify == 0" >
+                `identify`,
+            </if>
+            <if test="info != null" >
+                `info`,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="id != null or id == 0" >
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="nickname != null" >
+                #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="identify != null or identify == 0" >
+                #{identify,jdbcType=INTEGER},
+            </if>
+            <if test="info != null" >
+                #{info,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+
+
+    <update id="updateByPrimaryKeySelective" parameterType="com.suixingpay.entity.salesman" >
+        update `salesman`
+        <set >
+            <if test="nickname != null" >
+                `nickname` = #{nickname,jdbcType=VARCHAR},
+            </if>
+            <if test="username != null" >
+                `username` = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null" >
+                `password` = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="identify != null or identify == 0" >
+                `identify` = #{identify,jdbcType=INTEGER},
+            </if>
+            <if test="info != null" >
+                `info` = #{info,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <update id="updateByPrimaryKey" parameterType="com.suixingpay.entity.salesman" >
+        update `salesman` set
+        `nickname` = #{nickname,jdbcType=VARCHAR},
+        `username` = #{username,jdbcType=VARCHAR},
+        `password` = #{password,jdbcType=VARCHAR},
+        `identify` = #{identify,jdbcType=INTEGER},
+        `info` = #{info,jdbcType=VARCHAR}
+        where `id` = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `salesman`
+        where `id` = #{id,jdbcType=INTEGER}
+    </select>
+
+
+    <sql id="findPageWithWhere" >
+        <where> 1=1
+            <if test="id != null or id == 0" >
+                and `id` = #{id,jdbcType=INTEGER}
+            </if>
+            <if test="nickname != null" >
+                and `nickname` = #{nickname,jdbcType=VARCHAR}
+            </if>
+            <if test="username != null" >
+                and `username` = #{username,jdbcType=VARCHAR}
+            </if>
+            <if test="password != null" >
+                and `password` = #{password,jdbcType=VARCHAR}
+            </if>
+            <if test="identify != null or identify == 0" >
+                and `identify` = #{identify,jdbcType=INTEGER}
+            </if>
+            <if test="info != null" >
+                and `info` = #{info,jdbcType=VARCHAR}
+            </if>
+
+            <if test="null != likes">
+                <foreach collection="likes.keys" item="k" separator=" ">
+                    <if test='k == "id" and likes[k] != null'>
+                        and `id` like concat('%', #{likes.id,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "nickname" and likes[k] != null'>
+                        and `nickname` like concat('%', #{likes.nickname,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "username" and likes[k] != null'>
+                        and `username` like concat('%', #{likes.username,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "password" and likes[k] != null'>
+                        and `password` like concat('%', #{likes.password,jdbcType=VARCHAR}, '%')
+                    </if>
+                    <if test='k == "identify" and likes[k] != null'>
+                        and `identify` like concat('%', #{likes.identify,jdbcType=INTEGER}, '%')
+                    </if>
+                    <if test='k == "info" and likes[k] != null'>
+                        and `info` like concat('%', #{likes.info,jdbcType=VARCHAR}, '%')
+                    </if>
+                </foreach>
+            </if>
+
+            <if test="null != dates">
+                <foreach collection="dates.keys" item="k" separator=" ">
+                </foreach>
+            </if>
+
+            <if test="null != includes">
+                <foreach collection="includes.keys" item="k" separator=" ">
+                    <if test='k == "id" and includes[k] != null'>
+                        and `id` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "nickname" and includes[k] != null'>
+                        and `nickname` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "username" and includes[k] != null'>
+                        and `username` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "password" and includes[k] != null'>
+                        and `password` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "identify" and includes[k] != null'>
+                        and `identify` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                    <if test='k == "info" and includes[k] != null'>
+                        and `info` in
+                        <foreach item="itemValue" collection="includes[k]" separator="," open="(" close=")" index="index">
+                            #{itemValue}
+                        </foreach>
+                    </if>
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <sql id="findPageWithWhereLike" >
+        <where> 1=1
+            <if test="id != null or id == 0" >
+                and `id` like concat('%', #{id,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="nickname != null" >
+                and `nickname` like concat('%', #{nickname,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="username != null" >
+                and `username` like concat('%', #{username,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="password != null" >
+                and `password` like concat('%', #{password,jdbcType=VARCHAR}, '%')
+            </if>
+            <if test="identify != null or identify == 0" >
+                and `identify` like concat('%', #{identify,jdbcType=INTEGER}, '%')
+            </if>
+            <if test="info != null" >
+                and `info` like concat('%', #{info,jdbcType=VARCHAR}, '%')
+            </if>
+        </where>
+    </sql>
+
+
+    <sql id="findPageWithOrder">
+        <if test="null != orders" >
+            ORDER BY
+            <foreach collection="orders.keys" item="k" separator=",">
+                <if test='k == "id"'>
+                    `id`
+                </if>
+                <if test='k == "nickname"'>
+                    `nickname`
+                </if>
+                <if test='k == "username"'>
+                    `username`
+                </if>
+                <if test='k == "password"'>
+                    `password`
+                </if>
+                <if test='k == "identify"'>
+                    `identify`
+                </if>
+                <if test='k == "info"'>
+                    `info`
+                </if>
+                <if test='orders[k] == "asc"'>
+                    ASC
+                </if>
+                <if test='orders[k] == "desc"'>
+                    DESC
+                </if>
+            </foreach>
+        </if>
+    </sql>
+
+
+    <select id="findOne" parameterType="com.suixingpay.entity.salesman" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `salesman`
+        <include refid="findPageWithWhere" />
+        limit 1
+    </select>
+
+
+    <select id="findAllWithResult" parameterType="com.suixingpay.entity.salesman" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `salesman`
+        <include refid="findPageWithWhere" />
+        <include refid="findPageWithOrder" />
+    </select>
+
+
+    <select id="findPageWithResult" parameterType="com.suixingpay.entity.salesman" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `salesman`
+        <include refid="findPageWithWhere" />
+        <include refid="findPageWithOrder" />
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <select id="findPageWithCount" parameterType="com.suixingpay.entity.salesman" resultType="java.lang.Integer" >
+        select count(1)
+        from `salesman`
+        <include refid="findPageWithWhere" />
+    </select>
+
+    <select id="findPageWithResultLike" parameterType="com.suixingpay.entity.salesman" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `salesman`
+        <include refid="findPageWithWhereLike" />
+        <include refid="findPageWithOrder" />
+        limit #{start},#{pageSize}
+    </select>
+
+
+    <select id="findPageWithCountLike" parameterType="com.suixingpay.entity.salesman" resultType="java.lang.Integer" >
+        select count(1)
+        from `salesman`
+        <include refid="findPageWithWhereLike" />
+    </select>
+
+
+</mapper>

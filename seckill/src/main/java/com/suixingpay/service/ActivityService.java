@@ -9,6 +9,10 @@
 package com.suixingpay.service;
 
 
+import com.suixingpay.entity.Activity;
+
+import java.util.List;
+
 /**
  * @description:
  * @author: jiangyuanchu<jiang_yc@suixingpay.com>
@@ -16,4 +20,44 @@ package com.suixingpay.service;
  * @version: V1.0
  */
 public interface ActivityService {
+    /**
+     * 添加活动
+     * @param activity
+     * @return
+     */
+    int insertSelective(Activity activity);
+
+    /**
+     * 删除活动
+     * @param id
+     * @return
+     */
+    Integer deleteByPrimaryKey(int id);
+
+    /**
+     * 查看指定活动
+     * @param id
+     * @return
+     */
+    Activity selectById(int id);
+
+    /**
+     * 管理员查看所有活动
+     * @return
+     */
+    List<Activity> selectAll();
+
+    /**
+     * 通过城市活动
+     * @param city
+     * @return
+     */
+    List<Activity> selectByCity(String city);
+
+    /**
+     * 查看有效活动
+     * @param time
+     * @return
+     */
+    List<Activity> selectValidActivity();
 }

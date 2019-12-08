@@ -4,7 +4,7 @@ server:
     max-connections: 8192
 
 mybatis:
-  mapper-locations: classpath:/com/suixingpay/repository/base/*.xml
+  mapper-locations: classpath:/repository/base/*.xml
   type-aliases-package: com.suixingpay.entity
 spring:
   datasource:

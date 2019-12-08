@@ -8,8 +8,11 @@
  */
 package com.suixingpay.repository;
 
+import com.suixingpay.entity.Activity;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @description:
@@ -20,4 +23,11 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface ActivityRepository {
+    int insertSelective(Activity activity);
+    Integer deleteByPrimaryKey(int id);
+    Activity selectById(int id);
+    List<Activity> selectAll();
+    List<Activity> selectValidActivity(String time);
+    List<Activity> selectByCity(String city);
+
 }

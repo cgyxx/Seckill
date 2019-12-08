@@ -119,13 +119,29 @@
     </update>
 
 
-    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `activity`
         where `id` = #{id,jdbcType=INTEGER}
     </select>
-
+    <select id="selectAll" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+    </select>
+    <select id="selectByCity" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        where `city` = #{city,jdbcType=VARCHAR}
+    </select>
+    <select id="selectValidActivity" parameterType="java.lang.String" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `activity`
+        where `endtime` >= #{time,jdbcType=VARCHAR}
+    </select>
 
     <sql id="findPageWithWhere" >
         <where> 1=1

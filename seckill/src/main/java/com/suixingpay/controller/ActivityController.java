@@ -26,4 +26,9 @@ public class ActivityController {
     @Autowired
     private ActivityService activityService;
 
+    @RequestMapping("test")
+    public Integer Test(Integer id){
+        return activityService.deleteByPrimaryKey(id);
+    }
+
 }

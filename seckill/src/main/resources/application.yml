@@ -24,6 +24,11 @@ spring:
     validationQuery: SELECT 1 FROM dual
     # 配置监控统计拦截的filters,去掉后，监控界面的sql无法统计
     filters: stat,wall,log4j
+    maxPoolPreparedStatementPerConnectionSize: 20
+    useGlobalDataSourceStat: true
+    connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+
 
   mail:
     host: smtp.163.com #邮件发送服务器的主机，这里采用的是163邮箱来发送邮件

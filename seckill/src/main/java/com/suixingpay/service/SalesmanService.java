@@ -9,6 +9,10 @@
 package com.suixingpay.service;
 
 
+import com.suixingpay.entity.LoginParam;
+import com.suixingpay.entity.Result;
+import com.suixingpay.entity.Salesman;
+
 /**
  * @description:
  * @author: jiangyuanchu<jiang_yc@suixingpay.com>
@@ -16,4 +20,5 @@ package com.suixingpay.service;
  * @version: V1.0
  */
 public interface SalesmanService {
+    Result<Salesman> login(LoginParam loginParam);
 }

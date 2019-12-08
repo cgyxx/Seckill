@@ -26,7 +26,10 @@ dependencies {
     compile group: 'org.apache.poi', name: 'poi', version: '4.1.0'
     // redis依赖
     compile group: 'redis.clients', name: 'jedis', version: '3.0.1'
-
     implementation 'com.suixingpay.starter:suixingpay-starter-swagger2:4.0.0.RELEASE'
+
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-redis
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-redis', version: '2.1.4.RELEASE'
+
 
 }

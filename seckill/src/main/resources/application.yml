@@ -40,8 +40,35 @@ spring:
     multipart:
       maxFileSize: -1    #文件上传大小限制 -1
       maxRequestSize: -1
-
-
+  #rabbitmq
+  rabbitmq:
+    host: 47.94.103.229
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
+    listener:
+      simple:
+        concurrency: 10
+        max-concurrency: 10
+        prefetch: 1
+        auto-startup: true
+        default-requeue-rejected: true
+    template:
+      retry:
+        enabled: true
+        initial-interval: 1000ms
+        max-attempts: 3
+        max-interval: 10000ms
+        multiplier: 1.0
+#redis
+redis:
+  host: 152.136.101.102
+  port: 6379
+  timeout: 10
+  poolMaxTotal: 1000
+  poolMaxIdle: 500
+  poolMaxWait: 500
 
 INDEX_CONTENT_REDIS_KEY: INDEX_CONTENT_REDIS_KEY
 

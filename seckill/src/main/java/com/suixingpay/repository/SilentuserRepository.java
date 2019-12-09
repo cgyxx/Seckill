@@ -8,8 +8,11 @@
  */
 package com.suixingpay.repository;
 
+import com.suixingpay.entity.Silentuser;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 /**
  * @description:
@@ -20,4 +23,11 @@ import org.springframework.stereotype.Repository;
 @Mapper
 @Repository
 public interface SilentuserRepository {
+    Silentuser selectById(Integer id);//根据id查询沉默用户的信息
+    List<Silentuser> selectAllSilentuser();//查询所有沉默用户的所有信息
+    Silentuser selectSilentUserBySlaesid(Integer slaesid);//根据所属商户id查询沉默用户
+    Silentuser selectSilentUserById(Integer id);//根据查询沉默用户
+    Integer selectSilentUserIsSilentuer();//查询状态为1的沉默用户的数量
+    Integer selectSilentUserActiveuer();//查询状态为2的沉默用户的数量
+    Integer selectSilentUserIsDeaduer();//查询状态为3的沉默用户的数量
 }

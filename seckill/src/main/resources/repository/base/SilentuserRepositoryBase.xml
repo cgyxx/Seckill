@@ -152,11 +152,48 @@
     </update>
 
 
-    <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap" >
+    <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from  `silentuser`
+    where `id` = #{id,jdbcType=INTEGER}
+  </select>
+
+    <select id="selectAllSilentUser"  resultMap="BaseResultMap" >
         select
         <include refid="Base_Column_List" />
         from  `silentuser`
-        where `id` = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectSilentUserBySlaesid" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        select
+        <include refid="Base_Column_List" />
+        from  `silentuser`
+        where `slaesid` = #{slaesid}
+    </select>
+    <select id="selectSilentUserByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap" >
+        select
+        count(id)
+        from  `silentuser`
+        where `status` = #{status}
+    </select>
+    <select id="selectSilentUserIsSilentuer"  resultMap="BaseResultMap" >
+        select
+        count(id)
+        from  `silentuser`
+        where `status` = 1
+    </select>
+    <select id="selectSilentUserActiveuer"  resultMap="BaseResultMap" >
+        select
+        count(id)
+        from  `silentuser`
+        where `status` = 2
+    </select>
+    <select id="selectSilentUserIsDeaduer"  resultMap="BaseResultMap" >
+        select
+        count(id)
+        from  `silentuser`
+        where `status` = 3
     </select>
 
 
